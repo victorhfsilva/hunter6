@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hunter6"
+version = "0.1.0"
+description = "Triage a folder of scan results into per-subdomain FINDINGS, with optional AI validation and skills"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "hunter6" }]
+keywords = ["bug-bounty", "pentesting", "security", "ai", "verboo", "triage", "scans"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+]
+# Stdlib only. No runtime dependencies.
+dependencies = []
+
+[project.scripts]
+hunter6 = "hunter6.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hunter6"]

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# hunter6 launcher — run the CLI from the repo without installation.
+#
+#   ./bin/hunter6 hunt example.com --authorized
+#   ./bin/hunter6 providers
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="${ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
+
+PYTHON="${HUNTER6_PYTHON:-python3}"
+if ! command -v "${PYTHON}" >/dev/null 2>&1; then
+  echo "hunter6: python3 not found (set HUNTER6_PYTHON)" >&2
+  exit 127
+fi
+exec "${PYTHON}" -m hunter6 "$@"
